@@ -3,12 +3,22 @@
     This is where you will add and remove students.
   </h2>
 
-  <table>
-  	<tr>
-  		<th>StudentID</th>
-  		<th>Date Created</th>
-  		<th></th>
-  	</tr>
-  </table>
-<li><%= link_to "Add a Student",  '#' %></li>
+<div class="scrollableContainer">
+  <div class="scrollingArea">
+    <table class="studentID">
+  	  <thead>
+        <tr>
+  		    <th><div class="studentID">StudentID</div></th>
+  		    <th><div class="dateCreated">Date Created</div></th>
+          <th><div class="delete">Delete</div></th>
+  	    </tr>
+      </thead>
+      <tbody>
+        <tr><td>Lewis835</td><td>10-12-15</td></tr>
+        <tr><td>Fogle835</td><td>10-12-15</td></tr>
+        <tr><td>Walker835</td><td>10-12-15</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<li><%= link_to "Add a Student",  '#' %></li>
