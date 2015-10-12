@@ -11,4 +11,19 @@ class StaticPagesControllerTest < ActionController::TestCase
   	assert_respone :success
   end
 
+  test "should get help" do
+  	get :help 
+  	assert_response :success
+  end
+
+  test "should get login" do
+  	get :login
+  	assert_response :success
+  end
+
+  test "should get add_remove_student" do
+  	get :add_remove_student
+  	assert_response :success
+  end
+
 end
