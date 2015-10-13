@@ -1,37 +1,18 @@
 Rails.application.routes.draw do
-  root 'static_pages#login'
+  
+  root  'sessions#new'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+  
+  
+  
 
-  get 'about' => 'static_pages#about'
-  get 'home' => 'static_pages#home'
-  get 'add_remove_student' => 'static_pages#add_remove_student'
-  get 'help' => 'static_pages#help'
+  
+  
+  resources :teachers
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  
 
   # Example resource route with sub-resources:
   #   resources :products do
