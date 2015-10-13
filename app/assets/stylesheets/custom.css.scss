@@ -96,40 +96,4 @@ footer {
   }
 
   /* table */
-
-  * { padding: 0; margin: 0; }
-  table.studentID { 
-    font-family: verdana, arial, helvetica, sans-serif;
-    font-size: 11px;
-    cellspacing: 0; 
-    border-collapse: collapse; 
-    width: 535px;    
-    }
-  table.studentID th, table.studentID td { 
-    border-right: 1px solid #999; 
-    border-bottom: 1px solid #999; 
-    }
-  table.studentID th { background: #aab; }
-  table.studentID td { background: #eee; }
   
-  div.scrollableContainer { 
-    position: relative; 
-    width: 552px; 
-    padding-top: 1.7em; 
-    margin: 40px;    
-    border: 1px solid #999;
-    background: #aab;
-    }
-  div.scrollingArea { 
-    height: 240px; 
-    overflow: auto; 
-    }
-
-  table.scrollable thead tr {
-    left: -1px; top: 0;
-    position: absolute;
-    }
-
-  table.studentID .studentID     { width: 108px; }
-  table.studentID .date { width: 126px; }
-  table.studentID .delete   { width: 76px; text-align:center; }
