@@ -1,9 +1,19 @@
 <% provide(:title, "login") %>
-<div class="center jumbotron">
-  <h1>Welcome to the Junior Master Gardener's Game</h1>
+<h1 class =  center jumbotron>Log in</h1>
 
-  <h2>
-    This is where the awesome login Drew is making should go.
-  </h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: "#") do |f| %>
 
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>Forgot Password? </p>
+  </div>
 </div>
