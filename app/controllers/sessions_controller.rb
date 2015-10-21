@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    teacher = Teacher.find_by(name: params[:session][:name])
-    if teacher && teacher.authenticate(params[:session][:password])
-      log_in teacher
-	  redirect_to teacher
+    admin = Admin.find_by(username: params[:session][:username])
+    if admin && admin.authenticate(params[:session][:password])
+      log_in admin
+	  redirect_to admin
     else
       flash.now[:danger] = 'Invalid username/password combination'
       render 'new'
