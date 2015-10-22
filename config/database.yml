@@ -1,11 +1,8 @@
 development:
   adapter: postgresql
-  encoding: LATIN1
-  template: template0
+  encoding: unicode
   database: Development
   pool: 5
-  username: kyle
-  password: cs305
   host: localhost
 
 test:

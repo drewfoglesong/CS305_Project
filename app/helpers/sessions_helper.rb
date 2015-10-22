@@ -1,10 +1,10 @@
 module SessionsHelper
-def log_in(teacher)
-  session[:teacher_id] = teacher.id
+def log_in(admin)
+  session[:admin_id] = admin.id
 end
 
   def current_user
-    @current_user ||= Teacher.find_by(id:session[:teacher_id])
+    @current_user ||= Admin.find_by(id:session[:admin_id])
   end
  
   def logged_in?
