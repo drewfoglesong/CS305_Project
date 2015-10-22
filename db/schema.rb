@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021220643) do
+ActiveRecord::Schema.define(version: 20151022171002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
-    t.string   "password"
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
     t.string   "dob"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
   add_index "admins", ["username"], name: "index_admins_on_username", unique: true, using: :btree
