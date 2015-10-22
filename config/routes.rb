@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'students/new'
+
   root  'sessions#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -6,10 +8,14 @@ Rails.application.routes.draw do
 
   get 'about' => 'static_pages#about'
   get 'home' => 'static_pages#home'
-  get 'add_remove_student' => 'static_pages#add_remove_student'
   get 'help' => 'static_pages#help'
 
+  get 'add_remove_student' => 'students#list'
+  get 'add_student' => 'students#new'
+
+
   resources :teachers
+  resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

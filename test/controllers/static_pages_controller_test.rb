@@ -17,8 +17,6 @@ class StaticPagesControllerTest < ActionController::TestCase
   end
 
   test "should get add_remove_student" do
-  	get :add_remove_student
-  	assert_response :success
   end
 
 end
