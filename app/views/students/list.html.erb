@@ -14,9 +14,12 @@
       </tr>
     </thead>
     <tbody>
-        <tr><td>Lewis835</td><td>10-12-15</td><td><button type="button" class="btn btn-danger btn-xs">Delete</button></td></tr>
-        <tr><td>Fogle835</td><td>10-12-15</td><td><button type="button" class="btn btn-danger btn-xs">Delete</button></td></tr>
-        <tr><td>Walker835</td><td>10-12-15</td><td><button type="button" class="btn btn-danger btn-xs">Delete</button></td></tr>
+        <% @student.each do |student| %>
+        <li>
+          <tr><td><%= student.name %></td><td><%= student.created_at %></td><td><%= link_to "Remove", add_remove_student_path, method: :toggle, class: "btn btn-danger btn-xs" %></td></tr>
+        </li>
+        <% end %>
+      </ul>
     </tbody>
   </table>
 </div>

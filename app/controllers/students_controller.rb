@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
 
   def list
+    @student = Student.all
   end
 
   def show
@@ -18,6 +19,25 @@ class StudentsController < ApplicationController
     	redirect_to add_remove_student_path
     else
     	render 'new'
+    end
+  end
+
+  def destroy
+    Student.find(params[:id]).destroy
+    flash[:success] = "Student deleted"
+    redirect_to add_remove_student_url
+  end
+
+  def toggle
+    @student = Student.find(params[:id])
+    if @student.active == true
+      student.update_attributes(active: false)
+      flash[:success] = "User deactivated"
+      redirect_to add_remove_student_path
+    else
+      student.update_attributes(active: true)
+      flash[:success] = "User reactivated"
+      redirect_to add_remove_student_path
     end
   end
 
