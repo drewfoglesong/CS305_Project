@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20151021220643) do
 
   # These are extensions that must be enabled in order to support this database
@@ -28,6 +29,15 @@ ActiveRecord::Schema.define(version: 20151021220643) do
   end
 
   add_index "admins", ["username"], name: "index_admins_on_username", unique: true, using: :btree
+
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 
   create_table "teachers", force: :cascade do |t|
     t.string   "username"
