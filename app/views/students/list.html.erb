@@ -16,7 +16,7 @@
     <tbody>
         <% @student.each do |student| %>
         <li>
-          <tr><td><%= student.name %></td><td><%= student.created_at %></td><td><%= link_to "Remove", add_remove_student_path, method: :toggle, class: "btn btn-danger btn-xs" %></td></tr>
+          <tr><td><%= student.name %></td><td><%= student.created_at %></td><td><%= link_to "remove", student, method: :delete %></td></tr>
         </li>
         <% end %>
       </ul>

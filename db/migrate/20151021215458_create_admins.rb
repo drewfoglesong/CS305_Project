@@ -11,6 +11,6 @@ class CreateAdmins < ActiveRecord::Migration
     end
     add_index :admins, :username, unique: true
   end
-  add_column :password, :password_digest, :string
+    add_column :password, :password_digest, :string
   end
 end
