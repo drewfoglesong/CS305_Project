@@ -7,23 +7,18 @@ class StaticPagesControllerTest < ActionController::TestCase
   end
 
   test "should get about" do
-  	get :home
-  	assert_respone :success
+    get :about
+    assert_response :success
+  end
+
+  test "should get add_remove_students" do
+    get :add_remove_students
+    assert_response :success
   end
 
   test "should get help" do
-  	get :help 
-  	assert_response :success
-  end
-
-  test "should get login" do
-  	get :login
-  	assert_response :success
-  end
-
-  test "should get add_remove_student" do
-  	get :add_remove_student
-  	assert_response :success
+    get :help
+    assert_response :success
   end
 
 end

@@ -3,9 +3,15 @@
     <%= link_to "Junior Master Gardener", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
+	  <% if logged_in? %>
         <li><%= link_to "Home",   home_path %></li>
         <li><%= link_to "Help",   help_path %></li>
-        <li><%= link_to "Login",  root_path %></li>
+		<li><%= link_to "Log out", logout_path, method: "delete" %>
+		</li>
+	  <% else %>
+        <li><%= link_to "Help",   help_path %></li>
+		<li><%= link_to "Log in", root_path %></li>
+	  <% end %>
       </ul>
     </nav>
   </div>

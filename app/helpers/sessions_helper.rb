@@ -10,4 +10,9 @@ end
   def logged_in?
     !current_user.nil?
   end
+  
+  def log_out
+    session.delete(:teacher_id)
+    @current_user = nil
+  end
 end

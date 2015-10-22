@@ -7,6 +7,9 @@ def new
   @teacher = Teacher.new
   end
   
+def home
+end
+  
 
 
 private
