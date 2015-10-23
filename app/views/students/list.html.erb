@@ -4,7 +4,8 @@
   </h2>
 
 <%= link_to "Add Student", add_student_path, class: "btn btn-primary btn-s" %>
-<p></p>                                         
+<p></p>
+                                           
   <table class="table table-striped table-bordered table-hover table-condensed">
     <thead>
       <tr>
@@ -15,14 +16,17 @@
     </thead>
     <tbody>
         <% @student.each do |student| %>
+		<% if student.active? %>
         <li>
-          <tr><td><%= student.name %></td><td><%= student.created_at %></td><td><%= link_to "Remove", add_remove_student_path, method: :toggle, class: "btn btn-danger btn-xs" %></td></tr>
+          <tr><td><%= student.name %></td><td><%= student.created_at %></td><td><%= link_to "Remove", student, method: :delete, class: "btn btn-danger btn-xs" %></td></tr>
         </li>
+		<% end %>
         <% end %>
       </ul>
     </tbody>
   </table>
 </div>
+
 
 </body>
 </html>

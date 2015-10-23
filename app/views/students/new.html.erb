@@ -6,7 +6,7 @@
     <%= form_for(@student) do |f| %>
       <%= render 'shared/student_error_messages' %>
 
-      <%= f.label :StudentID %>
+      <%= f.label :StudentID, "Study ID" %>
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :Active? %>

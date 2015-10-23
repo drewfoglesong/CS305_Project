@@ -5,7 +5,7 @@ before_action :logged_in_teacher
   end
 
   def show
-  	@student = Student.fine(params[:id])
+  	@student = Student.fined(params[:id])
   end
 
   def new
@@ -23,9 +23,9 @@ before_action :logged_in_teacher
   end
 
   def destroy
-    Student.find(params[:id]).destroy
+    Student.find(params[:id]).toggle!(:active)
     flash[:success] = "Student deleted"
-    redirect_to dashboard_add_remove_students
+    redirect_to add_remove_student_path
   end
 
   def toggle
