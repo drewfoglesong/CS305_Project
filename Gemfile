@@ -9,6 +9,7 @@ gem 'coffee-rails', '4.1.0'
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks',   '2.3.0'
 gem 'bcrypt-ruby', '~> 3.1.5'
+gem 'bourbon', '~> 4.2', '>= 4.2.6'
 gem 'jbuilder',     '2.2.3'
 gem 'tzinfo-data'
 gem 'sdoc',         '0.4.0', group: :doc
