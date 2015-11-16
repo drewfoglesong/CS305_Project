@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'add_remove_student' => 'students#list'
   get 'add_student' => 'students#new'
   post 'add_remove_student' => 'students#list'
+  get 'chapter_four' => 'games#chapter_four'
+  get 'student_select' => 'students#student_select'
 
 
   resources :teachers

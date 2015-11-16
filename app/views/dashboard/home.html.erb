@@ -1,8 +1,25 @@
 <% provide(:title, "login") %>
   <h1>Welcome, <%= current_user.name %></h1>
 
-  <h2>
-    This is our incomplete home page. Enjoy
-  </h2>
-  <li><%= link_to "Add and Remove Students",  add_remove_student_path %></li>
+  <ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Play</a></li>
+  <li><a data-toggle="tab" href="#menu1">Manage Users</a></li>
+  <li><a data-toggle="tab" href="#menu2">View Scores</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <h3>Select a Chapter to Play</h3>
+    <li><%= link_to "Chapter Four",  student_select_path %></li>
+	<p>Learn about insects</p>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Edit Students</h3>
+    <li><%= link_to "Add and Remove Students",  add_remove_student_path %></li>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <h3>View or Export Scores</h3>
+    <p>Scores unavailabe</p>
+  </div>
 </div>
+  

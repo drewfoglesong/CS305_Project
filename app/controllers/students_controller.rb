@@ -11,6 +11,10 @@ before_action :logged_in_teacher
   def new
   	@student = Student.new
   end
+  
+  def student_select
+    @student = Student.all
+  end
 
   def create
     @student = Student.new(student_params)
@@ -24,7 +28,7 @@ before_action :logged_in_teacher
 
   def destroy
     Student.find(params[:id]).toggle!(:active)
-    flash[:success] = "Student deleted"
+    flash[:success] = "Student Deleted"
     redirect_to add_remove_student_path
   end
 

@@ -1,0 +1,174 @@
+
+
+	
+
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 550, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+
+    game.load.image('sky', 'assets/sky.png');
+    game.load.image('ground', 'assets/platform.png');
+	game.load.image('butterfree', 'assets/butterfree.png')
+	game.load.image('aphid', 'assets/aphid.png')
+	game.load.image('bee', 'assets/bee.jpg')
+	game.load.image('butterfly', 'assets/butterfly.png')
+	game.load.image('ladybug', 'assets/index.jpg')
+	game.load.image('prayingMantis', 'assets/prayingMantis.jpg')
+	game.load.image('wurmple', 'assets/wurmple.png')
+    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+
+}
+
+var player;
+var platforms;
+var cursors;
+
+var friends;
+var pests; 
+var score = 0;
+var scoreText;
+
+function create() {
+
+    //  We're going to be using physics, so enable the Arcade Physics system
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    //  A simple background for our game
+    game.add.sprite(0, 0, 'sky');
+
+    //  The platforms group contains the ground and the 2 ledges we can jump on
+    platforms = game.add.group();
+
+    //  We will enable physics for any object that is created in this group
+    platforms.enableBody = true;
+
+    // Here we create the ground.
+    var ground = platforms.create(0, game.world.height - 24, 'ground');
+
+    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+    ground.scale.setTo(2, 2);
+
+    //  This stops it from falling away when you jump on it
+    ground.body.immovable = true;
+
+    //  Now let's create two ledges
+    var ledge = platforms.create(400, 300, 'ground');
+    ledge.body.immovable = true;
+
+    ledge = platforms.create(-150, 200, 'ground');
+    ledge.body.immovable = true;
+
+    // The player and its settings
+    player = game.add.sprite(32, game.world.height - 150, 'dude');
+
+    //  We need to enable physics on the player
+    game.physics.arcade.enable(player);
+
+    //  Player physics properties. Give the little guy a slight bounce.
+    player.body.bounce.y = 0.2;
+    player.body.gravity.y = 300;
+    player.body.collideWorldBounds = true;
+
+    //  Our two animations, walking left and right.
+    player.animations.add('left', [0, 1, 2, 3], 10, true);
+    player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+    //  Finally some stars to collect
+    friends = game.add.group();
+
+    //  We will enable physics for any star that is created in this group
+    friends.enableBody = true;
+	
+	pests = game.add.group();
+	pests.enableBody = true;
+
+	
+	var butterfly = friends.create(10, 57, 'butterfly');
+	butterfly.scale.setTo(.25,.25);
+	butterfly = friends.create(500,450, 'butterfly');
+	butterfly.scale.setTo(.25,.25);
+	
+	var bee = friends.create(250, 400, 'bee');
+	bee.scale.setTo(.75,.75);
+	
+	var ladybug = friends.create(50, 300, 'ladybug');
+	
+	var prayingMantis = friends.create(300, 20, 'prayingMantis');
+	
+	var wurmple = pests.create(200,480, 'wurmple');
+	
+	wurmple = pests.create(175,338,'wurmple');
+	
+	var aphid = pests.create(490, 45, 'aphid');
+	aphid.scale.setTo(2,2);
+	
+	aphid = pests.create(400, 179, 'aphid');
+	aphid.scale.setTo(2,2);
+	
+	
+	
+
+    //  The score
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+    //  Our controls.
+    cursors = game.input.keyboard.createCursorKeys();
+    
+}
+
+function update() {
+
+game.physics.arcade.collide(player, platforms);
+    game.physics.arcade.collide(friends, platforms);
+	game.physics.arcade.collide(pests, platforms);
+
+    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
+    game.physics.arcade.overlap(player, friends, collectFriend, null, this);
+	game.physics.arcade.overlap(player, pests, collectPest, null, this);
+
+    //  only move when you click
+    if (game.input.activePointer.isDown)
+    {
+        //  400 is the speed it will move towards the mouse
+        game.physics.arcade.moveToPointer(player, 300);
+
+        //  if it's overlapping the mouse, don't move any more
+        if (Phaser.Rectangle.contains(player.body, game.input.x, game.input.y))
+        {
+            player.body.velocity.setTo(0, 0);
+        }
+    }
+    else
+    {
+        player.body.velocity.setTo(0, 0);
+    }
+
+}
+
+function collectFriend (player, friend) {
+    
+    // Removes the star from the screen
+    friend.kill();
+
+    //  Add and update the score
+    score -= 10;
+    scoreText.text = 'Score: ' + score;
+
+}
+function collectPest (player, pest) {
+    
+    // Removes the star from the screen
+    pest.kill();
+
+    //  Add and update the score
+    score += 25;
+    scoreText.text = 'Score: ' + score;
+
+}
+
+</script>
+
+

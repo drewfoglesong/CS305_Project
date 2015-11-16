@@ -17,7 +17,9 @@
       
       <%= yield %>
 	  
-	  <%= render 'layouts/footer' %>
+	  <%= render 'layouts/footer' unless @in_game %>
+	  
+	  
       
     </div>
 
