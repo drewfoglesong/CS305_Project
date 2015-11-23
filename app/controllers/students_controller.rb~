@@ -12,6 +12,10 @@ before_action :logged_in_teacher
     @student = Student.new
   end
 
+  def home
+    @student = Student.all
+  end
+
   def student_select
     @student = Student.all
   end
