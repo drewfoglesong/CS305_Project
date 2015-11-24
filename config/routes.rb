@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'testscore/scores'
+
   get 'dashboard/add_remove_students'
 
  get 'students/new'

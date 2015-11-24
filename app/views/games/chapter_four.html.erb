@@ -30,6 +30,7 @@ var friends;
 var pests; 
 var score = 0;
 var scoreText;
+var bugCounter = 0;
 
 function create() {
 
@@ -150,8 +151,13 @@ game.physics.arcade.collide(player, platforms);
 
 function collectFriend (player, friend) {
     
-    // Removes the star from the screen
+    // Removes the bug from the screen
     friend.kill();
+	bugCounter++;
+	if (bugCounter == 4 || bugCounter == 6)
+	{
+	   newBugs();
+	}
 
     //  Add and update the score
     score -= 10;
@@ -160,12 +166,32 @@ function collectFriend (player, friend) {
 }
 function collectPest (player, pest) {
     
-    // Removes the star from the screen
+    // Removes the bug from the screen
     pest.kill();
+	bugCounter++;
+	if (bugCounter == 4 || bugCounter == 6)
+	{
+	   newBugs();
+	}
 
     //  Add and update the score
     score += 25;
     scoreText.text = 'Score: ' + score;
+
+}
+function newBugs() {
+
+if (bugCounter == 4)
+{
+aphid = pests.create(400, 379, 'aphid');
+aphid.scale.setTo(2,2);
+wurmple = pests.create(105,338,'wurmple');
+}
+else if (bugCounter == 6)
+{
+  window.location = '/home/';
+}
+
 
 }
 
