@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/add_remove_students'
 
-  get 'students/new'
+ get 'students/new'
 
   root  'sessions#new'
   get 'login' => 'sessions#new'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'chapter_four' => 'games#chapter_four'
   get 'student_select' => 'students#student_select'
 
-  get 'scores' => 'testscore#scores'
+  get 'scores' => 'dashboard#home'
 
 
   resources :teachers
