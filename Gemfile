@@ -13,7 +13,7 @@ gem 'bourbon', '~> 4.2', '>= 4.2.6'
 gem 'jbuilder',     '2.2.3'
 gem 'tzinfo-data'
 gem 'sdoc',         '0.4.0', group: :doc
-
+gem 'will_paginate', '3.0.7'
 group :development, :test do
   gem 'sqlite3'     
   gem 'byebug',      '3.4.0'

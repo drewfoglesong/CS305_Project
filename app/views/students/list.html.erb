@@ -5,28 +5,44 @@
 
 <%= link_to "Add Student", add_student_path, class: "btn btn-primary btn-s" %>
 <p></p>
-                                           
+       
+<input type="checkbox" id="xxx" name="xxx" onclick="showInactive" />Show inactive students.
+
   <table class="table table-striped table-bordered table-hover table-condensed">
     <thead>
       <tr>
-        <th>StudentID</th>
-        <th>Date Created</th>
+        <th><%= sortable "name", "StudentID" %></th>
+        <th><%= sortable "created_at", "Date Created" %></th>
+        <th><%= sortable "active", "Active?" %></th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
         <% @student.each do |student| %>
-		<% if student.active? %>
-        <li>
-          <tr><td><%= student.name %></td><td><%= student.created_at %></td><td><%= link_to "Remove", student, method: :delete, class: "btn btn-danger btn-xs" %></td></tr>
-        </li>
-		<% end %>
+        <% if student.active? %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.created_at %></td>
+            <td><%= student.active %></td>
+            <td><%= link_to "Add/Remove", student, method: :delete, class: "btn btn-danger btn-xs" %></td>
+          </tr>
         <% end %>
+        <% end %>
+
       </ul>
     </tbody>
   </table>
+
 </div>
+<script>
+function showInactive() {
+  if (document.getElementById('xxx').checked)
+  {
+    document.getElementById('')
+  } else {
 
-
+  }
+}
+</script>
 </body>
 </html>

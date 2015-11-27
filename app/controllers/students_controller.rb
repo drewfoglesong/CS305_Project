@@ -1,7 +1,8 @@
 class StudentsController < ApplicationController
 before_action :logged_in_teacher
+  helper_method :sort_column, :sort_direction
   def list
-    @student = Student.all
+    @student = Student.order(sort_column + " " + sort_direction)
   end
 
   def show
@@ -24,20 +25,12 @@ before_action :logged_in_teacher
 
   def destroy
     Student.find(params[:id]).toggle!(:active)
-    flash[:success] = "Student deleted"
-    redirect_to add_remove_student_path
-  end
-
-  def toggle
-    @student = Student.find(params[:id])
-    if @student.active == true
-      student.update_attributes(active: false)
-      flash[:success] = "User deactivated"
+    if Student.find(params[:id]).active == false
+      flash[:success] = "Student deactivated"
       redirect_to add_remove_student_path
     else
-      student.update_attributes(active: true)
-      flash[:success] = "User reactivated"
-      redirect_to add_remove_student_path
+      flash[:success] = "Student reactivated"
+      redirect_to add_remove_student_path 
     end
   end
 
@@ -52,5 +45,13 @@ before_action :logged_in_teacher
         flash[:danger] = "Nice try"
         redirect_to login_url
       end
+    end
+
+    def sort_column
+      Student.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
