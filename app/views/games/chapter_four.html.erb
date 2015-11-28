@@ -1,24 +1,27 @@
 
 
-	
+	<% provide(:title, "Chapter 4") %>
 
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 550, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
 
-    game.load.image('sky', 'assets/sky.png');
+    game.load.image('garden', 'assets/garden.jpeg');
     game.load.image('ground', 'assets/platform.png');
-	game.load.image('butterfree', 'assets/butterfree.png')
-	game.load.image('aphid', 'assets/aphid.png')
-	game.load.image('bee', 'assets/bee.jpg')
-	game.load.image('butterfly', 'assets/butterfly.png')
-	game.load.image('ladybug', 'assets/index.jpg')
-	game.load.image('prayingMantis', 'assets/prayingMantis.jpg')
-	game.load.image('wurmple', 'assets/wurmple.png')
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+	game.load.image('aphid', 'assets/aphid1.png');
+	game.load.image('bee', 'assets/bee.png');
+	game.load.image('butterfly', 'assets/butterfly1.png');
+	game.load.image('ladybug', 'assets/index.png');
+	game.load.image('prayingMantis', 'assets/prayingMantis.png');
+	game.load.image('wurmple', 'assets/wurm.png');
+	game.load.image('dung', 'assets/dung.png');
+	game.load.image('grub', 'assets/grub.png');
+	game.load.image('mite', 'assets/mite.png');
+	game.load.image('wasp', 'assets/wasp.png');
+    game.load.image('net', 'assets/net.png', 32, 48);
 
 }
 
@@ -38,7 +41,10 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
-    game.add.sprite(0, 0, 'sky');
+	
+	
+		  game.add.sprite(0,0,'garden');
+    
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -47,7 +53,7 @@ function create() {
     platforms.enableBody = true;
 
     // Here we create the ground.
-    var ground = platforms.create(0, game.world.height - 24, 'ground');
+    var ground = platforms.create(0, game.world.height - 9, 'ground');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     ground.scale.setTo(2, 2);
@@ -56,21 +62,22 @@ function create() {
     ground.body.immovable = true;
 
     //  Now let's create two ledges
-    var ledge = platforms.create(400, 300, 'ground');
+    /*var ledge = platforms.create(400, 400, 'ground');
     ledge.body.immovable = true;
 
-    ledge = platforms.create(-150, 200, 'ground');
-    ledge.body.immovable = true;
+    ledge = platforms.create(-150, 250, 'ground');
+    ledge.body.immovable = true;*/
 
     // The player and its settings
-    player = game.add.sprite(32, game.world.height - 150, 'dude');
+    player = game.add.sprite(32, game.world.height - 150, 'net');
+	player.scale.setTo(.3,.3);
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
-    player.body.gravity.y = 300;
+    player.body.gravity.y = 0 ;
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
@@ -89,26 +96,32 @@ function create() {
 	
 	var butterfly = friends.create(10, 57, 'butterfly');
 	butterfly.scale.setTo(.25,.25);
-	butterfly = friends.create(500,450, 'butterfly');
+	butterfly = friends.create(500,500, 'butterfly');
 	butterfly.scale.setTo(.25,.25);
 	
 	var bee = friends.create(250, 400, 'bee');
-	bee.scale.setTo(.75,.75);
+	bee.scale.setTo(.5,.5);
 	
-	var ladybug = friends.create(50, 300, 'ladybug');
+	bee = friends.create(620, 380, 'bee');
+	bee.scale.setTo(.5,.5);
+	
+	var ladybug = friends.create(50, 372, 'ladybug');
 	
 	var prayingMantis = friends.create(300, 20, 'prayingMantis');
 	
-	var wurmple = pests.create(200,480, 'wurmple');
+	var wurmple = pests.create(200,500, 'wurmple');
+	
 	
 	wurmple = pests.create(175,338,'wurmple');
 	
 	var aphid = pests.create(490, 45, 'aphid');
-	aphid.scale.setTo(2,2);
+	aphid.scale.setTo(1.8,1.8);
+	
 	
 	aphid = pests.create(400, 179, 'aphid');
-	aphid.scale.setTo(2,2);
-	
+	aphid.scale.setTo(1.8,1.8);
+	var mite = pests.create(457,457, 'mite');
+    mite.scale.setTo(.5,.5);
 	
 	
 
@@ -151,10 +164,10 @@ game.physics.arcade.collide(player, platforms);
 
 function collectFriend (player, friend) {
     
-    // Removes the bug from the screen
+    // Removes the star from the screen
     friend.kill();
 	bugCounter++;
-	if (bugCounter == 4 || bugCounter == 6)
+	if (bugCounter == 4 || bugCounter == 9)
 	{
 	   newBugs();
 	}
@@ -166,10 +179,10 @@ function collectFriend (player, friend) {
 }
 function collectPest (player, pest) {
     
-    // Removes the bug from the screen
+    // Removes the star from the screen
     pest.kill();
 	bugCounter++;
-	if (bugCounter == 4 || bugCounter == 6)
+	if (bugCounter == 4 || bugCounter == 9)
 	{
 	   newBugs();
 	}
@@ -179,22 +192,29 @@ function collectPest (player, pest) {
     scoreText.text = 'Score: ' + score;
 
 }
-function newBugs() {
 
+function newBugs () {
 if (bugCounter == 4)
 {
-aphid = pests.create(400, 379, 'aphid');
-aphid.scale.setTo(2,2);
-wurmple = pests.create(105,338,'wurmple');
-}
-else if (bugCounter == 6)
-{
-  window.location = '/home/';
-}
+wurmple = pests.create(175,338,'wurmple');
+aphid = pests.create(375, 179, 'aphid');
+aphid.scale.setTo(1.8,1.8);
+var wasp = friends.create(675,200, 'wasp');
+wasp.scale.setTo(.6,.6);
+var grub = pests.create(675,384, 'grub');
+grub.scale.setTo(.5,.5);
+var dung = friends.create(715,450, 'dung');
+dung.scale.setTo(.2,.2);
+mite = pests.create(209,200, 'mite');
+mite.scale.setTo(.5,.5);
+} else if (bugCounter == 9)
 
-
+window.location = '/home/';
 }
 
 </script>
+
+
+
 
 
