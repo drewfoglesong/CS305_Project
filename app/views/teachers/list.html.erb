@@ -1,0 +1,89 @@
+<% provide(:title, "Add and Remove Student's") %>
+  <h2>
+    Manage Students
+  </h2>
+
+<%= link_to "Add Teacher", add_teacher_path, class: "btn btn-primary btn-s" %>
+<p></p>
+       
+<input type="checkbox" id="Inactive" name="Inactive" value="1">Show inactive teachers.
+  <table class="table table-striped table-bordered table-hover table-condensed" id="teacherTable">
+    <thead>
+      <tr>
+        <th><%= sortable "name", "Teacher's Name" %></th>
+        <th><%= sortable "created_at", "Date Created" %></th>
+        <th><%= sortable "active", "Active?" %></th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @teacher.each do |teacher| %>
+        <% if teacher.admin == true %>
+          <tr>
+            <td><%= teacher.name %></td>
+            <td><%= teacher.created_at %></td>
+            <td><%= teacher.admin %></td>
+          </tr>
+        <% end %>
+        <% if teacher.admin == false %>
+          <tr class="hidethis">
+            <td><%= teacher.name %></td>
+            <td><%= teacher.created_at %></td>
+            <td><%= teacher.admin %></td>
+
+          </tr>
+        <% end %>
+        <% end %>
+
+      </ul>
+    </tbody>
+  </table>
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+
+    <script>
+      function handleButtonClick(button){
+        if ($(button).text().match("Check all")){
+          $(":checkbox").prop("checked", true)
+        } else {
+          $(":checkbox").prop("checked", false)
+        };
+        updateButtonStatus();
+      }
+      function updateButtonStatus(){
+        var allChecked = $(":checkbox").length === $(":checkbox:checked").length;
+        $("button").text(allChecked? "Uncheck all" : "Check all");
+      }
+      function updateCookie(){
+        var elementValues = {};
+        $(":checkbox").each(function(){
+          elementValues[this.id] = this.checked;
+        });
+        elementValues["buttonText"] = $("button").text();
+        $.cookie('elementValues', elementValues, { expires: 7, path: '/' })
+      }
+      function repopulateFormELements(){
+        var elementValues = $.cookie('elementValues');
+        if(elementValues){
+          Object.keys(elementValues).forEach(function(element) {
+            var checked = elementValues[element];
+            $("#" + element).prop('checked', checked);
+          });
+          $("button").text(elementValues["buttonText"])
+        }
+      }
+      $(":checkbox").on("change", function(){
+        updateButtonStatus();
+        updateCookie();
+      });
+      $("button").on("click", function() {
+        handleButtonClick(this);
+        updateCookie();
+      });
+      $.cookie.json = true;
+      repopulateFormELements();
+    </script>
+</body>
+</html>

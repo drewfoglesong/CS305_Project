@@ -1,2 +1,22 @@
-<h1>Teachers#new</h1>
-<p>Find me in app/views/teachers/new.html.erb</p>
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@teacher) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :TeacherID, "Teacher Username" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :Password, "Password" %>
+      <%= f.text_field :password, class: 'form-control' %>
+
+      <%= f.label :Admin %>
+      <%= f.check_box :admin %>
+      <p></p>
+      <%= f.submit "Create", class: "btn btn-primary" %>
+      <%= link_to "Cancel", add_remove_teacher_path, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>
