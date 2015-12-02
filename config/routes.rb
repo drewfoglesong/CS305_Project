@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'testscore/scores'
+
 
   get 'dashboard/add_remove_students'
 
@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   post 'add_remove_teacher' => 'teachers#list'
   get 'add_teacher' => 'teachers#new'
   post 'save' => 'games#save'
-  
+  get 'chapter_four' => 'games#chapter_four'
+
+  get 'add_remove_teacher' => 'teachers#list'
+  post 'add_remove_teacher' => 'teachers#list'
+  get 'add_teacher' => 'teachers#new'
+
 
 
   resources :teachers
