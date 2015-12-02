@@ -18,12 +18,18 @@ Rails.application.routes.draw do
   get 'add_remove_student' => 'students#list'
   get 'add_student' => 'students#new'
   post 'add_remove_student' => 'students#list'
-  get 'chapter_four' => 'games#chapter_four'
-  get 'student_select' => 'students#student_select'
+  post 'play' => 'games#chapter_four'
+  get 'student_select' => 'games#student_select'
+  get 'add_remove_teacher' => 'teachers#list'
+  post 'add_remove_teacher' => 'teachers#list'
+  get 'add_teacher' => 'teachers#new'
+  post 'save' => 'games#save'
+  
 
 
   resources :teachers
   resources :students
+  resources :scores
 
   
 

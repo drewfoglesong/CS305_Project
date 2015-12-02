@@ -4,10 +4,22 @@ layout 'application', :except => [:chapter_four]
 
 def chapter_four
    @in_game = true;
+   @student = Student.find_by(name: params[:game][:name])
+   session[:player] = @student.id
 end
 
 def student_select
 end
+
+def save
+   @student = Student.find(session[:player])
+   @score = @student.scores.build(entry: params[:data_value])
+   if @score.save
+   session.delete(:player)
+   
+   end
+end
+
 
 
 private

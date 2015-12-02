@@ -1,6 +1,7 @@
 
 
 	<% provide(:title, "Chapter 4") %>
+	
 
 
 <script type="text/javascript">
@@ -167,34 +168,34 @@ function collectFriend (player, friend) {
     // Removes the star from the screen
     friend.kill();
 	bugCounter++;
-	if (bugCounter == 4 || bugCounter == 9)
+	score -= 10;
+	scoreText.text = 'Score: ' + score;
+	if (bugCounter == 5 || bugCounter == 9)
 	{
 	   newBugs();
 	}
 
-    //  Add and update the score
-    score -= 10;
-    scoreText.text = 'Score: ' + score;
-
+    
+    
+    
 }
 function collectPest (player, pest) {
     
     // Removes the star from the screen
     pest.kill();
 	bugCounter++;
-	if (bugCounter == 4 || bugCounter == 9)
+	score += 25;
+	scoreText.text = 'Score: ' + score;
+	if (bugCounter == 5 || bugCounter == 9)
 	{
 	   newBugs();
 	}
 
-    //  Add and update the score
-    score += 25;
-    scoreText.text = 'Score: ' + score;
 
 }
 
 function newBugs () {
-if (bugCounter == 4)
+if (bugCounter == 5)
 {
 wurmple = pests.create(175,338,'wurmple');
 aphid = pests.create(375, 179, 'aphid');
@@ -208,9 +209,26 @@ dung.scale.setTo(.2,.2);
 mite = pests.create(209,200, 'mite');
 mite.scale.setTo(.5,.5);
 } else if (bugCounter == 9)
+{
 
-window.location = '/home/';
+$.ajax({
+        url : "/save",
+        type : "post",
+        data : { data_value: JSON.stringify(score) }
+    });
+
+	}
 }
+
+function gameOver() {
+window.alert("Game Over! Score: " + score);
+game.destroy();
+window.location = "/home";
+
+}
+$( document ).ajaxStop(function() {
+ gameOver(); 
+});
 
 </script>
 
