@@ -2,6 +2,23 @@
 @import "bootstrap";
 @import "bourbon";
 
+.navbar-custom {
+    background-color:#229922;
+    color:#00FF33;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
 body {
   padding-top: 60px;
 }
