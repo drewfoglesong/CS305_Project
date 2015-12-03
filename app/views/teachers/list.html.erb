@@ -2,7 +2,7 @@
 <% provide(:title, "Add and Remove Teachers") %>
   <h2>
     Manage Teachers
-
+  </h2>
 
 
 <%= link_to "Add Teacher", add_teacher_path, class: "btn btn-primary btn-s" %>
@@ -14,25 +14,29 @@
       <tr>
         <th><%= sortable "name", "Teacher's Name" %></th>
         <th><%= sortable "created_at", "Date Created" %></th>
+        <th><%= sortable "admin", "Admin?" %></th>
         <th><%= sortable "active", "Active?" %></th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
         <% @teacher.each do |teacher| %>
-        <% if teacher.admin == true %>
+        <% if teacher.active == true %>
           <tr>
             <td><%= teacher.name %></td>
             <td><%= teacher.created_at %></td>
             <td><%= teacher.admin %></td>
+            <td><%= teacher.active %></td>
+            <td><%= link_to "Deactivate", teacher, method: :delete, class: "btn btn-danger btn-xs" %></td>
           </tr>
         <% end %>
-        <% if teacher.admin == false %>
+        <% if teacher.active == false %>
           <tr class="hidethis">
             <td><%= teacher.name %></td>
             <td><%= teacher.created_at %></td>
             <td><%= teacher.admin %></td>
-
+            <td><%= teacher.active %></td>
+            <td><%= link_to "Reactivate", teacher, method: :delete, class: "btn btn-success btn-xs" %></td>
           </tr>
         <% end %>
         <% end %>

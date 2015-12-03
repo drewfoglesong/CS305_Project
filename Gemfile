@@ -8,12 +8,14 @@ gem 'uglifier',     '2.5.3'
 gem 'coffee-rails', '4.1.0'
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks',   '2.3.0'
-gem 'bcrypt-ruby', '~> 3.1.5'
-gem 'bourbon', '~> 4.2', '>= 4.2.6'
+gem 'bcrypt-ruby',  '~> 3.1.5'
+gem 'bourbon',      '~> 4.2', '>= 4.2.6'
 gem 'jbuilder',     '2.2.3'
 gem 'tzinfo-data'
 gem 'sdoc',         '0.4.0', group: :doc
-gem 'will_paginate', '3.0.7'
+gem 'will_paginate','3.0.7'
+gem 'cancan',       '1.6.10'
+
 group :development, :test do
   gem 'sqlite3'     
   gem 'byebug',      '3.4.0'

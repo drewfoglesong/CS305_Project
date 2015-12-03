@@ -25,6 +25,17 @@ def create
     end
   end
 
+def destroy
+    Teacher.find(params[:id]).toggle!(:active)
+    if Teacher.find(params[:id]).active == false
+      flash[:success] = "Teacher deactivated"
+      redirect_to add_remove_teacher_path
+    else
+      flash[:success] = "Teacher reactivated"
+      redirect_to add_remove_teacher_path 
+    end
+  end
+
 private
   def teacher_params
     params.require(:teacher).permit(:name,:password,:password_confirmation,:admin)

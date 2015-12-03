@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     teacher = Teacher.find_by(name: params[:session][:name])
-    if teacher && teacher.authenticate(params[:session][:password])
+    if teacher && teacher.authenticate(params[:session][:password]) && teacher.active?
       log_in teacher
 	  redirect_to home_path
     else
