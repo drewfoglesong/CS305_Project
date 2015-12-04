@@ -11,11 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151204042901) do
-=======
+
 ActiveRecord::Schema.define(version: 20151204040356) do
->>>>>>> origin/Presentation
+
 
   create_table "scores", force: :cascade do |t|
     t.integer  "entry"
