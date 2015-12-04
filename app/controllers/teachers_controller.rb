@@ -12,7 +12,12 @@ def home
 end
   
 def list
-    @teacher = Teacher.order(sort_column + " " + sort_direction)
+    if Teacher.current_teacher.admin == false
+      flash[:danger] = "you dont have permission to do this"
+      redirect_to home_path
+    else
+      @teacher = Teacher.order(sort_column + " " + sort_direction)
+    end
   end
 
 def create
@@ -24,6 +29,51 @@ def create
       render 'new'
     end
   end
+
+def destroy
+    if Teacher.current_teacher.super == true && Teacher.find(params[:id]).super == false
+      Teacher.find(params[:id]).toggle!(:active)
+        if Teacher.find(params[:id]).active == false
+          flash[:success] = "Teacher deactivated"
+          redirect_to add_remove_teacher_path
+        else
+          flash[:success] = "Teacher reactivated"
+          redirect_to add_remove_teacher_path 
+        end
+    else
+      if Teacher.find(params[:id]).admin == false
+        Teacher.find(params[:id]).toggle!(:active)
+        if Teacher.find(params[:id]).active == false
+          flash[:success] = "Teacher deactivated"
+          redirect_to add_remove_teacher_path
+        else
+          flash[:success] = "Teacher reactivated"
+          redirect_to add_remove_teacher_path 
+        end
+      else
+        flash[:danger] = "You don't have permission to deactivate admin accounts"
+        redirect_to add_remove_teacher_path
+      end
+    end
+  end
+
+def edit
+  @teacher = Teacher.find(params[:id])
+  if (Teacher.current_teacher != @teacher) && (Teacher.current_teacher.admin == false) || (Teacher.current_teacher.super == false) && (Teacher.current_teacher != @teacher) && (@teacher.admin == true)
+      flash[:danger] = "you dont have permission to do this"
+      redirect_to home_path
+    end
+  end
+
+def update
+  @teacher = Teacher.find(params[:id])
+  if @teacher.update_attributes(teacher_params)
+    flash[:success] = "Profile updated"
+    redirect_to home_path
+  else
+    render 'edit'
+  end
+end
 
 private
   def teacher_params

@@ -8,6 +8,10 @@ before_action :logged_in_teacher
     @student = Student.all
   end
   
+  def all_scores
+    @score = Score.all
+  end
+  
   private
   def logged_in_teacher
       unless logged_in?

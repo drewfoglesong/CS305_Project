@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'add_remove_teacher' => 'teachers#list'
   post 'add_remove_teacher' => 'teachers#list'
   get 'add_teacher' => 'teachers#new'
+  get 'all_scores' => 'dashboard#all_scores'
 
 
 
