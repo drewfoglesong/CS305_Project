@@ -3,4 +3,9 @@ module DashboardHelper
 	student = Student.find_by(id:integer)
 	return student.name
    end
+
+   def recentscorename
+        student = Student.find_by(id:@recent.student_id)
+	return student.name
+   end
 end

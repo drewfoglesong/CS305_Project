@@ -6,6 +6,12 @@ before_action :logged_in_teacher
   
   def home
     @student = Student.all
+    @score = Score.all
+    
+  end
+ 
+  def all_scores
+    @score = Score.all
   end
   
   private

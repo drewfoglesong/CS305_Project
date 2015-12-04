@@ -33,10 +33,15 @@
       </thead>
       <tbody>
 
-
-
-
-          
+	  <% @score.each do |score| %>
+        
+            <tr>
+		<td><%= scorename(score.student_id) %></td>
+		<td><%= score.entry %></td>
+	    </tr>
+        
+	  
+          <% end %>
     </tbody>
   </table>
 <li><%= link_to "All Scores",  all_scores_path %></li>

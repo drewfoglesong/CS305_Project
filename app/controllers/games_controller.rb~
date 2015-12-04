@@ -18,7 +18,13 @@ def save
    session.delete(:player)
    
    end
-end  
+end 
+
+def testscore
+   if student.name = score.studentid
+	return entry.score
+   end
+end 
 
 private
   def logged_in_teacher
