@@ -54,6 +54,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    cancan (1.6.10)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -210,6 +211,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.2.0.0)
   bourbon (~> 4.2, >= 4.2.6)
   byebug (= 3.4.0)
+  cancan (= 1.6.10)
   coffee-rails (= 4.1.0)
   guard-minitest (= 2.3.1)
   jbuilder (= 2.2.3)
@@ -227,3 +229,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (= 2.5.3)
   will_paginate (= 3.0.7)
+
+BUNDLED WITH
+   1.10.6
