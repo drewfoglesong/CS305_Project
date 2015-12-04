@@ -20,6 +20,8 @@
 	<p></p> <h3>Edit Teachers</h3>
 	<li><%= link_to "Add and Remove Teachers",  add_remove_teacher_path %></li>
     <% end %>
+    <p></p><h3>My Account</h3>
+    <li><%= link_to "Change Username/Password",  edit_teacher_path(Teacher.current_teacher) %></li>
 
   </div>
   <div id="menu2" class="tab-pane fade">

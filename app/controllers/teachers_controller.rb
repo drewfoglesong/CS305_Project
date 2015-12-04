@@ -41,6 +41,24 @@ def destroy
     end
   end
 
+def edit
+  @teacher = Teacher.find(params[:id])
+  if (Teacher.current_teacher != @teacher) && (Teacher.current_teacher.admin == false)
+      flash[:danger] = "you dont have permission to do this"
+      redirect_to home_path
+    end
+  end
+
+def update
+  @teacher = Teacher.find(params[:id])
+  if @teacher.update_attributes(teacher_params)
+    flash[:success] = "Profile updated"
+    redirect_to home_path
+  else
+    render 'edit'
+  end
+end
+
 private
   def teacher_params
     params.require(:teacher).permit(:name,:password,:password_confirmation,:admin)

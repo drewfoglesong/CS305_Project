@@ -16,6 +16,7 @@
         <th><%= sortable "created_at", "Date Created" %></th>
         <th><%= sortable "admin", "Admin?" %></th>
         <th><%= sortable "active", "Active?" %></th>
+        <th>Edit Teacher</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -27,6 +28,7 @@
             <td><%= teacher.created_at %></td>
             <td><%= teacher.admin %></td>
             <td><%= teacher.active %></td>
+            <td><%= link_to "Edit", edit_teacher_path(teacher), class: "btn btn-danger btn-xs" %></td>
             <td><%= link_to "Deactivate", teacher, method: :delete, class: "btn btn-danger btn-xs" %></td>
           </tr>
         <% end %>
@@ -36,6 +38,7 @@
             <td><%= teacher.created_at %></td>
             <td><%= teacher.admin %></td>
             <td><%= teacher.active %></td>
+            <td><%= link_to "Edit", teacher, method: :update, class: "btn btn-danger btn-xs" %></td>
             <td><%= link_to "Reactivate", teacher, method: :delete, class: "btn btn-success btn-xs" %></td>
           </tr>
         <% end %>
