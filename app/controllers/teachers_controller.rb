@@ -31,19 +31,24 @@ def create
   end
 
 def destroy
-    Teacher.find(params[:id]).toggle!(:active)
-    if Teacher.find(params[:id]).active == false
-      flash[:success] = "Teacher deactivated"
-      redirect_to add_remove_teacher_path
+    if Teacher.find(params[:id]).admin == false
+      Teacher.find(params[:id]).toggle!(:active)
+      if Teacher.find(params[:id]).active == false
+        flash[:success] = "Teacher deactivated"
+        redirect_to add_remove_teacher_path
+      else
+        flash[:success] = "Teacher reactivated"
+        redirect_to add_remove_teacher_path 
+      end
     else
-      flash[:success] = "Teacher reactivated"
-      redirect_to add_remove_teacher_path 
+      flash[:danger] = "You don't have permission to deactivate admin accounts"
+      redirect_to add_remove_teacher_path
     end
   end
 
 def edit
   @teacher = Teacher.find(params[:id])
-  if (Teacher.current_teacher != @teacher) && (Teacher.current_teacher.admin == false)
+  if (Teacher.current_teacher != @teacher) && (Teacher.current_teacher.admin == false) || (Teacher.current_teacher != @teacher) && (@teacher.admin == true)
       flash[:danger] = "you dont have permission to do this"
       redirect_to home_path
     end
