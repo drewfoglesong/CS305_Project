@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include StudentsHelper
   include TeachersHelper
+
+  before_filter :set_current_teacher
+
+  def set_current_teacher
+  	Teacher.current_teacher = current_user
+  end
 end

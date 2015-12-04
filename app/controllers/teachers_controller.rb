@@ -12,7 +12,12 @@ def home
 end
   
 def list
-    @teacher = Teacher.order(sort_column + " " + sort_direction)
+    if Teacher.current_teacher.admin == false
+      flash[:danger] = "you dont have permission to do this"
+      redirect_to home_path
+    else
+      @teacher = Teacher.order(sort_column + " " + sort_direction)
+    end
   end
 
 def create

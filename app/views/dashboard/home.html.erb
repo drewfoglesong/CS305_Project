@@ -16,10 +16,10 @@
   <div id="menu1" class="tab-pane fade">
     <h3>Edit Students</h3>
     <li><%= link_to "Add and Remove Students",  add_remove_student_path %></li>
-
+    <% if Teacher.current_teacher.admin == true %>
 	<p></p> <h3>Edit Teachers</h3>
 	<li><%= link_to "Add and Remove Teachers",  add_remove_teacher_path %></li>
-
+    <% end %>
 
   </div>
   <div id="menu2" class="tab-pane fade">
