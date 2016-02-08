@@ -95,33 +95,33 @@ function create() {
 	pests.enableBody = true;
 
 	
-	var butterfly = friends.create(10, 57, 'butterfly');
+	var butterfly = friends.create(randomX(), randomY(), 'butterfly');
 	butterfly.scale.setTo(.25,.25);
-	butterfly = friends.create(500,500, 'butterfly');
+	butterfly = friends.create(randomX(), randomY(), 'butterfly');
 	butterfly.scale.setTo(.25,.25);
 	
-	var bee = friends.create(250, 400, 'bee');
+	var bee = friends.create(randomX(), randomY(), 'bee');
 	bee.scale.setTo(.5,.5);
 	
-	bee = friends.create(620, 380, 'bee');
+	bee = friends.create(randomX(), randomY(), 'bee');
 	bee.scale.setTo(.5,.5);
 	
-	var ladybug = friends.create(50, 372, 'ladybug');
+	var ladybug = friends.create(randomX(), randomY(), 'ladybug');
 	
-	var prayingMantis = friends.create(300, 20, 'prayingMantis');
+	var prayingMantis = friends.create(randomX(), randomY(), 'prayingMantis');
 	
-	var wurmple = pests.create(200,500, 'wurmple');
+	var wurmple = pests.create(randomX(), randomY(), 'wurmple');
 	
 	
-	wurmple = pests.create(175,338,'wurmple');
+	wurmple = pests.create(randomX(), randomY(),'wurmple');
 	
-	var aphid = pests.create(490, 45, 'aphid');
+	var aphid = pests.create(randomX(), randomY(), 'aphid');
 	aphid.scale.setTo(1.8,1.8);
 	
 	
-	aphid = pests.create(400, 179, 'aphid');
+	aphid = pests.create(randomX(), randomY(), 'aphid');
 	aphid.scale.setTo(1.8,1.8);
-	var mite = pests.create(457,457, 'mite');
+	var mite = pests.create(randomX(), randomY(), 'mite');
     mite.scale.setTo(.5,.5);
 	
 	
@@ -194,19 +194,28 @@ function collectPest (player, pest) {
 
 }
 
+//Generate random spawns
+function randomX(){
+     return Math.floor(Math.random()*(780-25+1)+25);
+}
+
+function randomY(){
+     return Math.floor(Math.random()*(550-25+1)+25);
+}
+
 function newBugs () {
 if (bugCounter == 5)
 {
-wurmple = pests.create(175,338,'wurmple');
-aphid = pests.create(375, 179, 'aphid');
+wurmple = pests.create(randomX(), randomY(),'wurmple');
+aphid = pests.create(randomX(), randomY(), 'aphid');
 aphid.scale.setTo(1.8,1.8);
-var wasp = friends.create(675,200, 'wasp');
+var wasp = friends.create(randomX(), randomY(), 'wasp');
 wasp.scale.setTo(.6,.6);
-var grub = pests.create(675,384, 'grub');
+var grub = pests.create(randomX(), randomY(), 'grub');
 grub.scale.setTo(.5,.5);
-var dung = friends.create(715,450, 'dung');
+var dung = friends.create(randomX(), randomY(), 'dung');
 dung.scale.setTo(.2,.2);
-mite = pests.create(209,200, 'mite');
+mite = pests.create(randomX(), randomY(), 'mite');
 mite.scale.setTo(.5,.5);
 } else if (bugCounter == 9)
 {
